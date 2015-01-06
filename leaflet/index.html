@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+  <title>Route Me</title>
+  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+  <link rel="stylesheet" href="js/leaflet-routing-machine.css" />
+</head>
+<style>
+body {
+  padding: 0;
+  margin: 0;
+}
+html, body, #map {
+  height: 100%;
+}
+</style>
+
+<body>
+  <div id="map"></div>
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+  <script src="js/leaflet-routing-machine.min.js"></script>
+  <script src="js/Control.Geocoder.js"></script>
+  <script src="js/easy-button.js"></script>
+  <script>
+  var map = new L.Map('map', { center: new L.LatLng(40.214468, -104.824070), zoom:10, attributionControl:true, minZoom:1});
+
+
+  var osmUrl='http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var osmAttrib='Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+  var osm = new L.TileLayer(osmUrl);
+  map.addLayer(osm);
+
+
+  var route = L.Routing.control({
+    waypoints: [
+
+    ],
+    units: 'imperial',
+    geocoder: L.Control.Geocoder.google(),
+    routeWhileDragging: true
+  });
+
+
+
+  L.easyButton('fa-compass',
+  function (){route.addTo(map)},
+
+  'Routing'
+);
+
+
+
+  </script>
+  </html>
